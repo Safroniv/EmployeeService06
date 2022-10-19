@@ -1,6 +1,9 @@
 using EmployeeService.Data;
+using EmployeeService.Models.Requests;
 using EmployeeService.Services;
 using EmployeeService.Services.Impl;
+using EmployeeService06.Models.Validators;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.EntityFrameworkCore;
@@ -87,6 +90,11 @@ namespace EmployeeService
 
             #endregion
 
+            #region Configure FluentValidator
+
+            builder.Services.AddScoped<IValidator<AuthenticationRequest>, AuthenticationRequestValidator>(); 
+
+            #endregion
 
             builder.Services.AddSingleton<IAuthenticateService, AuthenticateService>();
 
